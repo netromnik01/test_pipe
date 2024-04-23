@@ -1,6 +1,13 @@
 ---
 name: "Check syntax python"
-on:
-  workflow_call:
+description: "test"
+inputs:
+  shell_ex:
+    description: "test"
+    required: true
+    default: "ls -l ."
 runs:
-  shell: echo 'hello 2'
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/test/script.sh
+      shell: bash ${{ inputs.shell_ex }}
