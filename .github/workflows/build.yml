@@ -13,9 +13,5 @@ jobs:
         run: |
          echo "hello" > test.txt 
       - uses: ./actions/test
-      - uses: ./.github/test.yml
-      # - uses: .github/workflows/test.yml
-      - uses: ./actions/test.yml
-      - uses: ./test.yml
   call-workflow-in-local-repo:
     uses: ./.github/workflows/test.yml

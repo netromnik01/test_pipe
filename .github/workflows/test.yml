@@ -8,5 +8,3 @@ jobs:
     steps:
       - name: Check syntax ruff
         run: ls -l .
-      - name: Check syntax ruff
-        run: cat test.txt
