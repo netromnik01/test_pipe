@@ -13,11 +13,7 @@ jobs:
         run: |
          echo "hello" > test.txt 
       - uses: ./actions/test
+          with:
+            shell_ex: "cat test.txt"
   call-workflow-in-local-repo:
     uses: ./.github/workflows/test.yml
-    with:
-      shell_ex: "ls -l"
-  call-workflow-in-local-repo2:
-    uses: ./.github/workflows/test.yml
-    with:
-      shell_ex: "cat test.txt"
