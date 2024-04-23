@@ -2,8 +2,5 @@
 name: "Check syntax python"
 on:
   workflow_call:
-jobs:
-  test:
-    steps:
-      - name: Check syntax ruff
-        run: echo 'hello 2'
+runs:
+  shell: echo 'hello 2'
