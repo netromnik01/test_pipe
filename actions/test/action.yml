@@ -9,5 +9,4 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: Test
-      shell: ${{ inputs.shell_ex }}
+    - run: ${{ inputs.shell_ex }}
