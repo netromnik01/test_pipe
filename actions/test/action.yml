@@ -10,3 +10,4 @@ runs:
   using: "composite"
   steps:
     - run: bash -c "${{ inputs.shell_ex }}"
+      shell: bash
