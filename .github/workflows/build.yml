@@ -7,8 +7,12 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v3.1.0
+        with:
+          repository: owner/public-repo
+          ref: ${{ github.ref_name }}
       - name: Checkout
         run: |
          echo "hello" > test.txt 
-      - uses: .github/test.yml
-      - uses: .github/workflows/test.yml
+      - uses: ./.github/test.yml
+      - uses: ./.github/workflows/test.yml
