@@ -12,10 +12,10 @@ jobs:
       - name: Checkout
         run: |
          echo "hello" > test.txt 
-      - uses: ./actions/test
+      - uses: ./.github/actions/test
         with:
           shell_ex: "ls -l"
-      - uses: ./actions/test
+      - uses: ./.github/actions/test
         with:
           shell_ex: "cat test.txt"
   call-workflow-in-local-repo:
