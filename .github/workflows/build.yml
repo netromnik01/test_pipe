@@ -11,10 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-    - uses: awalsh128/cache-apt-pkgs-action@latest
-      with:
-        packages: git=1:2.30.2-1+deb11u2 libyaml-0-2 libssl-dev libcurl4-openssl-dev gcc python3-dev libyaml-dev
-        version: 1.0
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: git=1:2.30.2-1+deb11u2 libyaml-0-2 libssl-dev libcurl4-openssl-dev gcc python3-dev libyaml-dev
+          version: 1.0
       - uses: actions/checkout@v4
       - run: ls -l
       - name: Checkout
