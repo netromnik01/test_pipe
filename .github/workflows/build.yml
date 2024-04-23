@@ -10,4 +10,5 @@ jobs:
       - name: Checkout
         run: |
          echo "hello" > test.txt 
-      - uses: test.yml
+      - uses: .github/test.yml
+      - uses: .github/workflows/test.yml
