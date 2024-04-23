@@ -14,10 +14,10 @@ jobs:
          echo "hello" > test.txt 
       - uses: ./actions/test
   call-workflow-in-local-repo:
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/test
     with:
       shell_ex: "ls -l"
   call-workflow-in-local-repo:
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/test
     with:
       shell_ex: "cat test.txt"
