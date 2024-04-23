@@ -1,0 +1,13 @@
+name: Build
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        run: |
+         echo "hello" > test.txt 
+      - uses: test.yml
