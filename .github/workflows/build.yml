@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+      - run: ls -l
       - name: Checkout
         run: |
          echo "hello" > test.txt 
-      - uses: ./.github/test.yml
-      - uses: ./.github/workflows/test.yml
+      - uses: .github/test.yml
+      - uses: .github/workflows/test.yml
