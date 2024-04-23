@@ -17,3 +17,5 @@ jobs:
       # - uses: .github/workflows/test.yml
       - uses: ./actions/test.yml
       - uses: ./test.yml
+  call-workflow-in-local-repo:
+    uses: ./.github/workflows/test.yml
