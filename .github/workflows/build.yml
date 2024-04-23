@@ -19,10 +19,13 @@ jobs:
       - uses: ./.github/actions/test
         with:
           shell_ex: "ls -l"
-          poetry_version: ${{ env.python_version }}
+          poetry_version: ${{ python_version }}
       - uses: ./.github/actions/test
         with:
           shell_ex: "cat test.txt"
           poetry_version: '1.2.3'
+    with:
+      python-version: ${{ env.python-version }}
+
   call-workflow-in-local-repo:
     uses: ./.github/workflows/test.yml
