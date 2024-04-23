@@ -15,8 +15,10 @@ jobs:
       - uses: ./.github/actions/test
         with:
           shell_ex: "ls -l"
+          poetry-version: '1.2.3'
       - uses: ./.github/actions/test
         with:
           shell_ex: "cat test.txt"
+          poetry_version: '1.2.3'
   call-workflow-in-local-repo:
     uses: ./.github/workflows/test.yml
