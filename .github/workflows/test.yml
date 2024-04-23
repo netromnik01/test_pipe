@@ -4,6 +4,7 @@ on:
   workflow_call:
 jobs:
   test:
+      runs-on: ubuntu-22.04
     steps:
       - name: Check syntax ruff
         run: cat test.txt
