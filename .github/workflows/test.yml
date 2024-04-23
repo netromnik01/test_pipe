@@ -8,3 +8,4 @@ jobs:
     steps:
       - name: Check syntax ruff
         run: ls -l .
+        shell: bash
