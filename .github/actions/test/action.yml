@@ -2,7 +2,7 @@
 name: "Check syntax python"
 description: "test"
 inputs:
-  shell-ex:
+  shell_ex:
     description: "test"
     required: true
     default: "ls -l ."
