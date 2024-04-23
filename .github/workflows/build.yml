@@ -14,3 +14,5 @@ jobs:
          echo "hello" > test.txt 
       - uses: .github/test.yml
       - uses: .github/workflows/test.yml
+      - uses: actions/test.yml
+      - uses: test.yml
