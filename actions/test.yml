@@ -6,4 +6,4 @@ jobs:
   test:
     steps:
       - name: Check syntax ruff
-        run: echo 'hello 1'
+        run: echo 'hello 2'
