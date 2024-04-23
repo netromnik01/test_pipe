@@ -17,7 +17,7 @@ jobs:
     uses: ./.github/workflows/test
     with:
       shell_ex: "ls -l"
-  call-workflow-in-local-repo:
+  call-workflow-in-local-repo2:
     uses: ./.github/workflows/test
     with:
       shell_ex: "cat test.txt"
