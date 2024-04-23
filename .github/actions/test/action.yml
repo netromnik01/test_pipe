@@ -8,6 +8,9 @@ inputs:
     default: "ls -l ."
   poetry_version:
     required: true
+env:
+  python-version: '3.8'
+  poetry-version: '1.8.2'
 
 runs:
   using: "composite"

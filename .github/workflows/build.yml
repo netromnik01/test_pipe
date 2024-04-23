@@ -3,6 +3,10 @@ name: Build
 on:
   push:
 
+env:
+  python-version: '3.8'
+  poetry-version: '1.8.2'
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -15,7 +19,7 @@ jobs:
       - uses: ./.github/actions/test
         with:
           shell_ex: "ls -l"
-          poetry_version: '1.2.3'
+          poetry_version: ${{ env.python_version }}
       - uses: ./.github/actions/test
         with:
           shell_ex: "cat test.txt"
