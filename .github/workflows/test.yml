@@ -15,25 +15,17 @@ jobs:
 
     steps:
     - name: Check if branch is develop
-      run: |
-        if [ $GITHUB_REF != 'refs/heads/develop' ]; then
-          exit 0
-        fi
-    - name: Add comment to PR
       env:
         URL: ${{ github.event.pull_request.comments_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MESSAGE: "Test"
       run: |
-          curl \
+        if [ $GITHUB_REF != 'refs/heads/develop' ]; then
+            curl \
             -X POST \
             $URL \
             -H "Content-Type: application/json" \
             -H "Authorization: token $GITHUB_TOKEN" \
-            --data '{ "body": "blah blah" }'
-
-    - name: Comment PR
-      uses: thollander/actions-comment-pull-request@v2
-      with:
-        message: |
-          Only force push from develop branch is allowed !
-        reactions: rocket
+            --data '{ "body": $MESSAGE }'
+          exit 1
+        fi
