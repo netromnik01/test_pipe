@@ -1,11 +1,18 @@
----
-name: "Check syntax python"
+name: Protect master branch
+
 on:
-  workflow_call:
+  push:
+    branches:
+      - master
+
 jobs:
-  test:
-    runs-on: ubuntu-22.04
+  protect:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Check syntax ruff
-        run: ls -l .
-        shell: bash
+    - name: Check if branch is develop
+      run: |
+        if [ $GITHUB_REF != 'refs/heads/develop' ]; then
+          echo "Only force push from develop branch is allowed"
+          exit 1
+        fi
