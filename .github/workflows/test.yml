@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check if base branch needs to be updated
+      - name: Check if base branch needs to be updated
       run: |
         if [[ ${{ github.event.pull_request.base.ref }} == 'master' && (${{ github.event.pull_request.head.ref }} != 'develop' && !(${{ github.event.pull_request.head.ref }} | contains('hotfix/')) ) ]]; then
-          echo "Updating base branch to develop"
-          curl -s -X PATCH -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"base":"develop"}' "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}"
+          echo "name is hotfix/** and develop"
+          exit 1
         fi
