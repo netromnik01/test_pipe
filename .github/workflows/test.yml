@@ -26,6 +26,6 @@ jobs:
             $URL \
             -H "Content-Type: application/json" \
             -H "Authorization: token $GITHUB_TOKEN" \
-            --data '{ "body": $MESSAGE }'
+            --data '{ "body":"$MESSAGE" }'
           exit 1
         fi
