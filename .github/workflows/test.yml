@@ -18,7 +18,7 @@ jobs:
       env:
         URL: ${{ github.event.pull_request.comments_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        MESSAGE: "Test"
+        MESSAGE: "Пр может быть только от develop ветки"
       run: |
         if [ $GITHUB_REF != 'refs/heads/develop' ]; then
             curl \
@@ -26,6 +26,6 @@ jobs:
             $URL \
             -H "Content-Type: application/json" \
             -H "Authorization: token $GITHUB_TOKEN" \
-            --data '{ "body": $MESSAGE }'
+            --data '{ "body": "$MESSAGE" }'
           exit 1
         fi
