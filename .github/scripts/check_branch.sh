@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [[ $1 == 'master' && ($2 != 'develop' && !($2 =~ 'hotfix/.*')) ]]; then
+  echo $URL $GITHUB_TOKEN
   curl \
     -X POST \
     $URL \
