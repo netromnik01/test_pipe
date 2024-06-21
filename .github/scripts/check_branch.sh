@@ -1,9 +1,7 @@
 #!/bin/bash
 
 if [[ $1 == 'master' && ($2 != 'develop' && !($2 =~ 'hotfix/.*')) ]]; then
-  env
-  echo `env`
-  echo $COMMENTS_URL @
+  echo $COMMENTS_URL
   curl \
     -X POST \
     $URL \
