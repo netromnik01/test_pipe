@@ -1,7 +1,9 @@
 #!/bin/bash
 
 if [[ $1 == 'master' && ($2 != 'develop' && !($2 =~ 'hotfix/.*')) ]]; then
-  echo $URL $GITHUB_TOKEN
+  env
+  echo `env`
+  echo $COMMENTS_URL @
   curl \
     -X POST \
     $URL \
