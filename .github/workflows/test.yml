@@ -19,9 +19,13 @@ jobs:
         env:
           COMMENTS_URL: ${{ github.event.pull_request.comments_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash ./.github/scripts/check_branch.sh ${{ github.event.pull_request.base.ref }} ${{ github.event.pull_request.head.ref }}
+          MESSAGE: "Пр может быть только от ветки develop или hotfix/**" 
+        run: bash ./.github/scripts/check_if_branch_not_develop_or_hotfix.sh ${{ github.event.pull_request.base.ref }} ${{ github.event.pull_request.head.ref }}
 
       - name: Check if head branch is ancestor of base branch
-        run: |
-          git fetch origin develop
-          git merge-base --is-ancestor ${{ github.event.pull_request.head.ref }} develop
+        env:
+          COMMENTS_URL: ${{ github.event.pull_request.comments_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "Переред пушом в master ветка должна быть смерженна с develop" 
+        run: bash ./.github/scripts/check_if_head_branch_is_ancestor_of_base_branch.sh ${{ github.event.pull_request.head.ref }} ${{ github.event.pull_request.base.ref }}
+  
