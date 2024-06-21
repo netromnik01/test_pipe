@@ -1,27 +1,29 @@
-name: Protect master branch
+name: Gitflow protect master branch
 
 on:
   push:
     branches:
       - master
-  pull_request: 
-    branches: 
+  pull_request:
+    branches:
       - master
-      
 jobs:
   protect:
     permissions: write-all
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
       - name: Check if base branch needs to be updated
-      run: |
-        if [[ ${{ github.event.pull_request.base.ref }} == 'master' && (${{ github.event.pull_request.head.ref }} != 'develop' && !(${{ github.event.pull_request.head.ref }} | contains('hotfix/')) ) ]]; then
-          curl \
-            -X POST \
-            $URL \
-            -H "Content-Type: application/json" \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            --data '{ "body":"Пр может быть только от develop ветки" }'
-          exit 1
-        fi
+        env:
+          COMMENTS_URL: ${{ github.event.pull_request.comments_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "Пр может быть только от ветки develop или hotfix/**" 
+        run: bash ./.github/scripts/check_if_branch_not_develop_or_hotfix.sh ${{ github.event.pull_request.base.ref }} ${{ github.event.pull_request.head.ref }}
+
+      - name: Check if head branch is ancestor of base branch
+        env:
+          COMMENTS_URL: ${{ github.event.pull_request.comments_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "Переред пушом в master ветка должна быть смерженна с develop" 
+        run: bash ./.github/scripts/check_if_head_branch_is_ancestor_of_base_branch.sh ${{ github.event.pull_request.base.ref }} ${{ github.event.pull_request.head.ref }}
