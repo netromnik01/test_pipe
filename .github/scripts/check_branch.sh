@@ -1,12 +1,11 @@
 #!/bin/bash
 
 if [[ $1 == 'master' && ($2 != 'develop' && !($2 =~ 'hotfix/.*')) ]]; then
-  echo $COMMENTS_URL
   curl \
     -X POST \
     $COMMENTS_URL \
     -H "Content-Type: application/json" \
     -H "Authorization: token $GITHUB_TOKEN" \
-    --data '{ "body":"Пр может быть только от ветки develop или hotfix/**" }'
-  # exit 1
+    --data '{ "body":"Пр может быть только от ветки develop или hotfix/**" }' &>/dev/null
+  exit 1
 fi
