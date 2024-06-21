@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
       - name: Check if base branch needs to be updated
         run: bash .github/scripts/check_branch.sh ${{ github.event.pull_request.base.ref }} ${{ github.event.pull_request.head.ref }}
 
