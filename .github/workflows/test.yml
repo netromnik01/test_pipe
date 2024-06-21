@@ -15,16 +15,7 @@ jobs:
 
     steps:
       - name: Check if base branch needs to be updated
-        run: |
-          if [[ ${{ github.event.pull_request.base.ref }} == 'master' && (${{ github.event.pull_request.head.ref }} != 'develop' && !(${{ github.event.pull_request.head.ref }} | contains('hotfix/')) ) ]]; then
-            curl \
-              -X POST \
-              $URL \
-              -H "Content-Type: application/json" \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              --data '{ "body":"Пр может быть только от ветки develop или hotfix/**" }'
-            exit 1
-          fi
+        run: bash .github/scripts/check_branch.sh ${{ github.event.pull_request.base.ref }} ${{ github.event.pull_request.head.ref }}
 
       - name: Check if head branch is ancestor of base branch
         run: |
