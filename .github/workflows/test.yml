@@ -1,18 +1,32 @@
-name: Protect master branch
+name: Gitflow protect master branch
 
 on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   protect:
+    permissions: write-all
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check if branch is develop
-      run: |
-        if [ $GITHUB_REF != 'refs/heads/develop' ]; then
-          echo "Only force push from develop branch is allowed"
-          exit 1
-        fi
+      - name: Check if base branch needs to be updated
+        run: |
+          if [[ ${{ github.event.pull_request.base.ref }} == 'master' && (${{ github.event.pull_request.head.ref }} != 'develop' && !(${{ github.event.pull_request.head.ref }} | contains('hotfix/')) ) ]]; then
+            curl \
+              -X POST \
+              $URL \
+              -H "Content-Type: application/json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              --data '{ "body":"Пр может быть только от ветки develop или hotfix/**" }'
+            exit 1
+          fi
+
+      - name: Check if head branch is ancestor of base branch
+        run: |
+          git fetch origin develop
+          git merge-base --is-ancestor ${{ github.event.pull_request.head.ref }} develop
