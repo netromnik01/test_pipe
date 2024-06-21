@@ -1,6 +1,10 @@
 #!/bin/bash
-echo $1 $2
-if [[ $1 == 'master' && ($2 != 'develop' && !($2 =~ 'hotfix/.*')) ]]; then
-  bash ./.github/scripts/send_issue.sh $COMMENTS_URL $GITHUB_TOKEN $MESSAGE
+# $1=master $2='hotfix/1'
+
+BASE=$1
+HEAD=$2
+
+if [[ $BASE == 'master' && $HEAD != 'develop' &&  $HEAD != 'hotfix/'* ]]; then
+  # bash ./.github/scripts/send_issue.sh $COMMENTS_URL $GITHUB_TOKEN $MESSAGE
   exit 1
 fi
