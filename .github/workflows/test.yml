@@ -17,6 +17,11 @@ jobs:
       - name: Check if base branch needs to be updated
       run: |
         if [[ ${{ github.event.pull_request.base.ref }} == 'master' && (${{ github.event.pull_request.head.ref }} != 'develop' && !(${{ github.event.pull_request.head.ref }} | contains('hotfix/')) ) ]]; then
-          echo "name is hotfix/** and develop"
+          curl \
+            -X POST \
+            $URL \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            --data '{ "body":"Пр может быть только от develop ветки" }'
           exit 1
         fi
