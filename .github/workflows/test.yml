@@ -11,4 +11,4 @@ jobs:
     - name: Check if branch is develop
       run: |
         echo "$GITHUB_ENV";
-        echo "$NEW_VARIABLE";
+        echo NEW_VARIABLE:: "$NEW_VARIABLE";
